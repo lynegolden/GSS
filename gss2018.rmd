@@ -1,6 +1,6 @@
 ---
 title: "General Social Survey"
-author: "Your Name"
+author: "Lyne Golden"
 date: "Year 2019"
 output: 
   html_document:
@@ -30,44 +30,78 @@ levels(mydata4$VOTE12)[2] <- "no in 12"
 
 ```
 
+## Introduction Question 1
+
+
 
 ```{r}
-barchartGC(~VOTE16+VOTE12, data=mydata4, type = "percent") 
-chisqtestGC(~VOTE16+VOTE12, data=mydata4)
-votetab=xtabs(~VOTE16+VOTE12, data=mydata4)
-fisher.test(votetab)
+barchartGC(~VOTE16+VOTE12, data=mydata, type = "percent")   
+chisqtestGC(~VOTE16+VOTE12, data=mydata)  
+votetab=xtabs(~VOTE16+VOTE12, data=mydata)  
 ```
 
-# Introduction Question 1
 
+This section is about how many voters in different categories. In this section IAP for IAP through the IAP for NA is 0%. The voted for IAP is 0, voted for Voted is 90%, voted for Did not vote is 21%, vote for Ineligible is 10%,the voted for DK is 43%, and the voted for NA is about 22%. The Did not vote for IAP is 0, the Did not vote for Voted is 10%, the Did not vote for Did not vote is 65%, the Did not vote for Ineligible is 4%, the Did not vote for DK is 15%, and the Did not vote for NA is 15% also. The Ineligible for IAP is 0%, the Ineligible Voted is 3%, the Ineligible for Did not vote is 12%, the Ineligible for Ineligible is 95%, the Ineligible for DK is 0%, and for NA is 15%. the DK for IAP is 0%, the DK for Voted is less than 2%, the DK for Did not vote is less than 1%, the Dk for DK is 36%, and DK for NA is 0%. The NA for IAP is 0%, the NA for Voted is less than 1%, the NA for Did not vote is less than 1%, the NA for Ineligible is 0%, the NA for DK is 3%, and NA for NA is 55%. You can see that most of the percentages are higher in their own categories.  
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?!-->
 
 This data is from the 2018 General Social Survey. The first blocks of R-code has selected down a subset of the data to just 15 variables. It has further removed unwanted factor levels in much of the data. Examine that code to see what it is doing. First explain what you make out of comparing how people voted in 2012 with 2016.
 
 
 ## Methods
+```{r}
+chisqtestGC(~VOTE16+VOTE12, data=mydata)
+votetab=xtabs(~VOTE16+VOTE12, data=mydata)
+```
+
+
+We have higher numbers in each self categories and lower to none is the expected by Null counts. In the chi-square statistics there are high numbers in Voted, Did not vote, Ineligible, DK, and NA. The Chi-square Statistic equals to NaN and the Degrees of Freedom of the table equals to 25, and P-Value equals to NaN.
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
 
 ##Results
 
+The results are good but not enough information to explore the amount of every city, county or state that would have been a better avenue to conclude with the evidence already provided.
+
+
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
 ### Descriptive Results
 
+We are now taking a look at race between white, black, and othet ethnic races. Here we wil see some differences between the three. There are nine regions for us to look at the results.We will determine if the numbers hold up fairly and if not what should we consider.
+
+
 #### Graphical Descriptive Results
+
+```{r}
+barchartGC(~RACE+REGION, data=mydata2, type = "percent")   
+chisqtestGC(~RACE+REGION, data=mydata2)  
+racetab=xtabs(~RACE+REGION, data=mydata2)
+```
+
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 #### Numerical Descriptive Results
 
+
+```{r}
+chisqtestGC(~RACE+REGION, data=mydata2)
+racetab=xtabs(~RACE+REGION, data=mydata2)
+```
+The races are very unequal on the graphic chart.On the barchart for the white race is higher in South Alanta and East North Central The black race is the highest in South Atlanta with 50%, and the East North Central is the next hightest at 15%. For the other race they are high in Pacific with 40% and West South Central with 18%. We can see the numbers are not really close. However, middle West South Centra and Middle Atlanta are the same with about 13%, and the white race and other race are the same in the Mountain with about 18%.
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ### Inferential Results
 
+This hypothesis is not equal to me the black race has more people than the white race in the South side of Atlanta about 50% and the white race in South Atlanta is about 22%, and the other race has a large amount too in the Pacific they make up 35% of the population. The p-value is equal to 0, the Degrees of Freedom of the table equals 16, and Chi-Square Statistic equals to 192.4006
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
 # Introduction Question 2
+
+
+```{r}
+mydata3 <- filter(mydata2,BIGBANG=="True" | BIGBANG=="False",EVOLVED=="True"|EVOLVED=="False",POSTLIFE=="YES"|POSTLIFE=="NO",OWNGUN=="YES"|OWNGUN=="NO",COURTS=="TOO HARSH"|COURTS=="NOT HARSH ENOUGH"|COURTS=="ABOUT RIGHT") %>% droplevels()
+```
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?!-->
 
@@ -75,27 +109,53 @@ Now answer Is belief in the bigbang theory (BIGBANG) independent of belief in th
 
 ## Methods
 
+We are using the True or False, with Yes and, No with percentages. This method is short and simple. 
+
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
 
 ##Results
 
+I found out that the Yes in both True or False are the hightest and No and False. However, this is not a lot to go on so far as information. We are lacking some more variables 
+
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
 ### Descriptive Results
-
+In this Graphical results we see only True and False, and Yes or No, plus the percentages. The Yes in True is slightly lower that the No in False. Also, the No is higher on the True side and the False is is lower.  
+   
+   
 #### Graphical Descriptive Results
+
+```{r}
+barchartGC(~BIGBANG+POSTLIFE, data=mydata3, type = "percent") 
+chisqtestGC(~BIGBANG+POSTLIFE, data=mydata3)
+bigbangtab=xtabs(~BIGBANG+POSTLIFE, data=mydata3)
+```
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 #### Numerical Descriptive Results
 
+```{r}
+chisqtestGC(~BIGBANG+POSTLIFE, data=mydata3)
+bigbangtab=xtabs(~BIGBANG+POSTLIFE, data=mydata3)
+```
+
+Here we have the Observed counts, Counts expected from Null, Contributions to the chi-square statistic, and Chi-square Statistic for the Bigbang True and False and the Postlife Yes and No. We see the numbers from four categories. 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ### Inferential Results
 
+This hypothesis is the Inferential results. We begin with the Observed counts from the Bigbang the True is 86% and the False is 109% from the Yes variable. The Bigbang from the False with No in the Observed counts is No True at 23%, and no False is 9%. The Counts expected from Null for Bigbang with True and Yes is 93.63% and False Yes is 101.37%. The Bigbang with True and No is 15.37% and False and No is 16.63%. The Contributions to the Chi-square statistic from Bigbang the True and Yes is 0.62% and False and Yes is 0.57%. The Bigbang with True and No is 3.79% and the False and No is 3.50%. Last is the Chi-square Statistic equals 7.4181, Degrees of Freedom of the table equals 1, and the P-Value = 0.0065. Looking at these results we see that the Bigbang True and False with Yes is higher than the Bigbang True and False with No. These are numbers for the Bigbang theory and Postlife, but more numbers with a wider range could help with the hypothesis. 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
 # Introduction Question 3
+
+```{r}
+mydata4 <- filter(mydata3,CAPPUN=="FAVOR"|CAPPUN=="OPPOSE",VOTE12=="Voted"|VOTE12=="Did not vote",VOTE16=="Voted"|VOTE16=="Did not vote") %>% droplevels()  
+levels(mydata4$VOTE12)[1] <- "voted12" 
+levels(mydata4$VOTE12)[2] <- "no in 12"  
+```
+We are looking to see if the court system is Too Harsh, Not Harsh Enough or are they About Right, and how many Oppose or are in Favor.
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?!-->
 
@@ -107,24 +167,46 @@ This time compare the opinion on death penalty (CAPPUN) with opinion on courts (
 
 ##Results
 
+The results for the Oppose is Too Harsh 55%, Not Harsh Enough is about 30%, and About Right is about 18%. The Favor is a big 80% for Not Harsh enough, Too Harsh is 8% and About right is about 5%. 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
 ### Descriptive Results
 
+There are more percentages for Favor of the Not Harsh Enough than the Too Harsh and About Rigt. For the oppose the Too Harsh is the hisghest, then Not Harsh enough, last About Right. 
+
+
 #### Graphical Descriptive Results
+
+
+```{r}
+barchartGC(~CAPPUN+COURTS, data=mydata4, type = "percent") 
+chisqtestGC(~CAPPUN+COURTS, data=mydata4)
+cappuntab=xtabs(~CAPPUN+COURTS, data=mydata4)
+```
+
+
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 #### Numerical Descriptive Results
 
+
+```{r}
+chisqtestGC(~CAPPUN+COURTS, data=mydata4)
+cappuntab=xtabs(~CAPPUN+COURTS, data=mydata4)
+```
+
+
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ### Inferential Results
-
+The hypothesis for Cappun in Favor with Too Harsh is 13%, for Not Harsh Enough is  93%, and About Right is 10% of the courts. For Oppose with Too Harsh is 31%, for Not Harsh Enough is 20%, and About Right is 11% in Observred Counts. Counts expected by Null is in Favor with Too Harsh is 28.67%, and Not Harsh Enough is 73.64%, and About Right is 13.69%. For the Oppose with Too Harsh is 15.33%, Not Harsh Enough is 39.36%, and About right is 7.31% for the Courts. Next it is Contributions to the chi-square statistic for Favor with too Harsh is 8.57, Not Harsh Enough is 5.09%, About Right is 0.99% for the courts. For the Oppose is Too Harsh is 16.03, Not Harsh Enough is 9.52%, and About Right is 1.86% for the Courts. Chi-Square Statistic equals 42.0594%, Degrees of Freedom of the table equals 2%, and P-Value equals 0%. Here we just don't have enough information to where is the Favor and the Oppose comming from. What age group is the voters, what are the races of the voters, etc., like I said there are a lot of unkowns.
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
 
 # Discussion and Conclusion
 
+
+All of the variables and categories that was looked at have more questions than answers. To see more information is what I need to come to a clusion on at on all of these results. By the Null the question where okay and it was satisfied by the information given. As we can see by the results there are still information I did not get to see for myself to make a decesion for being complete, however the information was informitive but lacking in some areas. 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
