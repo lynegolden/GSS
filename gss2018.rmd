@@ -32,27 +32,14 @@ levels(mydata4$VOTE12)[2] <- "no in 12"
 
 ## Introduction Question 1
 
+This data is from the 2018 General Social Survey. The first blocks of R-code has selected down a subset of the data to just 15 variables. It has further removed unwanted factor levels in much of the data. Examine that code to see what it is doing. First explain what you make out of comparing how people voted in 2012 with 2016.
 
-
-```{r}
-barchartGC(~VOTE16+VOTE12, data=mydata, type = "percent")   
-chisqtestGC(~VOTE16+VOTE12, data=mydata)  
-votetab=xtabs(~VOTE16+VOTE12, data=mydata)  
-```
-
-
-This section is about how many voters in different categories. In this section IAP for IAP through the IAP for NA is 0%. The voted for IAP is 0, voted for Voted is 90%, voted for Did not vote is 21%, vote for Ineligible is 10%,the voted for DK is 43%, and the voted for NA is about 22%. The Did not vote for IAP is 0, the Did not vote for Voted is 10%, the Did not vote for Did not vote is 65%, the Did not vote for Ineligible is 4%, the Did not vote for DK is 15%, and the Did not vote for NA is 15% also. The Ineligible for IAP is 0%, the Ineligible Voted is 3%, the Ineligible for Did not vote is 12%, the Ineligible for Ineligible is 95%, the Ineligible for DK is 0%, and for NA is 15%. the DK for IAP is 0%, the DK for Voted is less than 2%, the DK for Did not vote is less than 1%, the Dk for DK is 36%, and DK for NA is 0%. The NA for IAP is 0%, the NA for Voted is less than 1%, the NA for Did not vote is less than 1%, the NA for Ineligible is 0%, the NA for DK is 3%, and NA for NA is 55%. You can see that most of the percentages are higher in their own categories.  
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?!-->
 
-This data is from the 2018 General Social Survey. The first blocks of R-code has selected down a subset of the data to just 15 variables. It has further removed unwanted factor levels in much of the data. Examine that code to see what it is doing. First explain what you make out of comparing how people voted in 2012 with 2016.
+
 
 
 ## Methods
-```{r}
-chisqtestGC(~VOTE16+VOTE12, data=mydata)
-votetab=xtabs(~VOTE16+VOTE12, data=mydata)
-```
-
 
 We have higher numbers in each self categories and lower to none is the expected by Null counts. In the chi-square statistics there are high numbers in Voted, Did not vote, Ineligible, DK, and NA. The Chi-square Statistic equals to NaN and the Degrees of Freedom of the table equals to 25, and P-Value equals to NaN.
 
@@ -72,11 +59,14 @@ We are now taking a look at race between white, black, and othet ethnic races. H
 
 #### Graphical Descriptive Results
 
+
+
 ```{r}
-barchartGC(~RACE+REGION, data=mydata2, type = "percent")   
-chisqtestGC(~RACE+REGION, data=mydata2)  
-racetab=xtabs(~RACE+REGION, data=mydata2)
+barchartGC(~VOTE16+VOTE12, data=mydata, type = "percent")
+chisqtestGC(~VOTE16+VOTE12, data=mydata)  
+votetab=xtabs(~VOTE16+VOTE12, data=mydata)  
 ```
+
 
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
@@ -85,18 +75,23 @@ racetab=xtabs(~RACE+REGION, data=mydata2)
 
 
 ```{r}
-chisqtestGC(~RACE+REGION, data=mydata2)
-racetab=xtabs(~RACE+REGION, data=mydata2)
+chisqtestGC(~VOTE16+VOTE12, data=mydata)  
+votetab=xtabs(~VOTE16+VOTE12, data=mydata) 
 ```
-The races are very unequal on the graphic chart.On the barchart for the white race is higher in South Alanta and East North Central The black race is the highest in South Atlanta with 50%, and the East North Central is the next hightest at 15%. For the other race they are high in Pacific with 40% and West South Central with 18%. We can see the numbers are not really close. However, middle West South Centra and Middle Atlanta are the same with about 13%, and the white race and other race are the same in the Mountain with about 18%.
-<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+
+!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ### Inferential Results
 
-This hypothesis is not equal to me the black race has more people than the white race in the South side of Atlanta about 50% and the white race in South Atlanta is about 22%, and the other race has a large amount too in the Pacific they make up 35% of the population. The p-value is equal to 0, the Degrees of Freedom of the table equals 16, and Chi-Square Statistic equals to 192.4006
+This section is about how many voters in different categories. In this section IAP for IAP through the IAP for NA is 0%. The voted for IAP is 0, voted for Voted is 90%, voted for Did not vote is 21%, vote for Ineligible is 10%,the voted for DK is 43%, and the voted for NA is about 22%. The Did not vote for IAP is 0, the Did not vote for Voted is 10%, the Did not vote for Did not vote is 65%, the Did not vote for Ineligible is 4%, the Did not vote for DK is 15%, and the Did not vote for NA is 15% also. The Ineligible for IAP is 0%, the Ineligible Voted is 3%, the Ineligible for Did not vote is 12%, the Ineligible for Ineligible is 95%, the Ineligible for DK is 0%, and for NA is 15%. the DK for IAP is 0%, the DK for Voted is less than 2%, the DK for Did not vote is less than 1%, the Dk for DK is 36%, and DK for NA is 0%. The NA for IAP is 0%, the NA for Voted is less than 1%, the NA for Did not vote is less than 1%, the NA for Ineligible is 0%, the NA for DK is 3%, and NA for NA is 55%. You can see that most of the percentages are higher in their own categories.  
+
+
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
 # Introduction Question 2
+
+Now answer Is belief in the bigbang theory (BIGBANG) independent of belief in the afterlife (POSTLIFE)
 
 
 ```{r}
@@ -105,7 +100,7 @@ mydata3 <- filter(mydata2,BIGBANG=="True" | BIGBANG=="False",EVOLVED=="True"|EVO
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?!-->
 
-Now answer Is belief in the bigbang theory (BIGBANG) independent of belief in the afterlife (POSTLIFE)
+
 
 ## Methods
 
@@ -150,18 +145,22 @@ This hypothesis is the Inferential results. We begin with the Observed counts fr
 
 # Introduction Question 3
 
+This time compare the opinion on death penalty (CAPPUN) with opinion on courts (COURTS).
+
 ```{r}
 mydata4 <- filter(mydata3,CAPPUN=="FAVOR"|CAPPUN=="OPPOSE",VOTE12=="Voted"|VOTE12=="Did not vote",VOTE16=="Voted"|VOTE16=="Did not vote") %>% droplevels()  
 levels(mydata4$VOTE12)[1] <- "voted12" 
 levels(mydata4$VOTE12)[2] <- "no in 12"  
 ```
-We are looking to see if the court system is Too Harsh, Not Harsh Enough or are they About Right, and how many Oppose or are in Favor.
+We are looking to see if the court system is Too Harsh, Not Harsh Enough or are they About Right, and how many Oppose and how mamy in Favor.
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?!-->
 
-This time compare the opinion on death penalty (CAPPUN) with opinion on courts (COURTS).
+
 
 ## Methods
+
+We are using barcharts, chisqtest, and x-tabs, to calculate our information for those who are in Favor and those who are opposed. 
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
 
@@ -207,6 +206,6 @@ The hypothesis for Cappun in Favor with Too Harsh is 13%, for Not Harsh Enough i
 # Discussion and Conclusion
 
 
-All of the variables and categories that was looked at have more questions than answers. To see more information is what I need to come to a clusion on at on all of these results. By the Null the question where okay and it was satisfied by the information given. As we can see by the results there are still information I did not get to see for myself to make a decesion for being complete, however the information was informitive but lacking in some areas. 
+All of the variables and categories that was looked at have more questions than answers. To see more information is what I need to come to a clusion on at on all of these results. By the Null the question where okay and it was satisfied by the information given. As we can see by the results there are still information I did not get to see for myself to make a decesion for being complete, however the information was informitive but lacking in some areas.I do reject on this note dure to not enough information. 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
